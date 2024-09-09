@@ -49,5 +49,3 @@ jobs:
             echo "CLONED REPO"
             cd poc-github-actions
             ls -la
-          shell: bash
-  
