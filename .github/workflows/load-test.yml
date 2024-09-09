@@ -42,3 +42,9 @@ jobs:
           owner: 'rgutierressouza'
           repository: 'java-project-design-pattern'
           access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: Configurar JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+  
