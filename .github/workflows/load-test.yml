@@ -51,7 +51,7 @@ jobs:
           platform: github
           path: java-project-design-pattern
       - name: Access cloned repository content
-          run: |
+        run: |
             echo "ROOT"
             ls -la
             echo "CLONED REPO"
@@ -65,6 +65,6 @@ jobs:
             java-version: '11'
   
        - name: Build and Test with Gradle
-          run: |
+         run: |
             cd java-project-design-pattern
             ./gradlew build
