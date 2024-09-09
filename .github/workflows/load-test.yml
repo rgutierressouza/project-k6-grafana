@@ -1,43 +1,33 @@
 name: K6 load test
 on: [push]
 permissions:
-  contents: write
-jobs:
-    build: 
-        name: K6 load test
-        runs-on: ubuntu-latest
-        steps:
-            - name: step 1 - checkout
-                uses: actions/checkout@v3
+contents: write
+ jobs:
+  build: 
+   name: K6 load test
+   runs-on: ubuntu-latest
+   steps:
+    - name: step 1 - checkout
+      uses: actions/checkout@v3
 
-            - name: step 2 - run k6 load test
-                uses: grafana/k6-action@v0.3.1
-                with: 
-                filename: main/execucaoCloudGrafana.js
+    - name: step 2 - run k6 load test
+      uses: grafana/k6-action@v0.3.1
+      with: 
+       filename: main/execucaoCloudGrafana.js
 
-            - run: ls & mkdir report & mv index.html report
+    - run: ls & mkdir report & mv index.html report
 
-            - name: step 3 - upload artifact
-                uses: actions/upload-artifact@v4
-                with: 
-                name: relatorio de testes de performance
-                path: report
-            
-            - name: step 4 - publish report
-                uses: peaceiris/actions-gh-pages@v4
-                with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                publish_branch: deploy
-                publish_dir: report
-        
-    automation-build: 
-        name: Clonar repositório B
-        runs-on: ubuntu-latest   
-        steps:
-            - name: step 1 - Clonagem do repositório
-                uses: rgutierressouza/clone-github-repo-action@v2.3
-                with:
-                    depth: 1
-                    branch: 'main'
-                    owner: 'rgutierressouza'
-                    repository: 'java-project-design-pattern'
+    - name: step 3 - upload artifact
+      uses: actions/upload-artifact@v4
+      with: 
+       name: relatorio de testes de performance
+       path: report
+
+    - name: step 4 - publish report
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+       github_token: ${{ secrets.GITHUB_TOKEN }}
+       publish_branch: deploy
+       publish_dir: report
+
+
