@@ -67,9 +67,6 @@ jobs:
     
       - name: Run JUnit Tests with Gradle
         run: |
-          ls
-          echo "entrando no arquivo"
           cd java-project-design-pattern
           ls
-          echo "-------------------"
           ./gradlew test
