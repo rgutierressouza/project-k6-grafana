@@ -35,7 +35,7 @@ jobs:
       runs-on: ubuntu-latest   
 
       steps:
-      - name: step 1 - checkout
+      - name: step 1 - Clonagem do repositório
         uses: actions/checkout@v3
         with:
           repository: rgutierressouza/java-project-design-pattern
