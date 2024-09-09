@@ -40,7 +40,7 @@ jobs:
           depth: 1
           branch: 'develop'
           owner: 'rgutierressouza'
-          repository: 'java-project-design-pattern'
+          repository: 'https://github.com/rgutierressouza/java-project-design-pattern.git'
       
       - name: Access cloned repository content
         run: |
