@@ -45,7 +45,7 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Clone rgutierressouza/java-project-design-pattern repository
-        uses: sudosubin/git-clone-action@v1
+        uses: actions/checkout@v3
         with:
           repository: rgutierressouza/java-project-design-pattern
           platform: github
