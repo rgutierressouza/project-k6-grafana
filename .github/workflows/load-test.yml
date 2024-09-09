@@ -37,11 +37,8 @@ jobs:
       - name: step 1 - Clonar projeto do github
         uses: rgutierressouza/clone-github-repo-action@main
         with:
-          depth: 1
-          branch: 'develop'
           owner: 'rgutierressouza'
           repository: 'java-project-design-pattern'
-          access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: Access cloned repository content
           run: |
             echo "ROOT"
