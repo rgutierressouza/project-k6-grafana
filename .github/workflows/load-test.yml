@@ -49,5 +49,4 @@ jobs:
         with:
           repository: rgutierressouza/java-project-design-pattern
           platform: github
-          ref: develop
           path: java-project-design-pattern
