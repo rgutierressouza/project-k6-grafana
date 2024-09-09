@@ -1,29 +1,36 @@
-name: K6 load test
+name: K6 Load Test and Java Project Build
+
 on: [push]
+
 permissions:
   contents: write
+
 jobs:
   job-k6-build: 
-    name: K6 load test
+    name: K6 Load Test
     runs-on: ubuntu-latest
     steps:
-      - name: step 1 - checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: step 2 - run k6 load test
+      - name: Run K6 load test
         uses: grafana/k6-action@v0.3.1
         with: 
           filename: main/execucaoCloudGrafana.js
 
-      - run: ls & mkdir report & mv index.html report
+      - name: Organize test results
+        run: |
+          ls
+          mkdir -p report
+          mv index.html report || true
 
-      - name: step 3 - upload artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with: 
-          name: relatorio de testes de performance
+          name: relatorio-de-testes-de-performance
           path: report
     
-      - name: step 4 - publish report
+      - name: Publish report
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -31,12 +38,13 @@ jobs:
           publish_dir: report
 
   job-automation-build: 
+    name: Clone and Build Java Project
     runs-on: ubuntu-latest
     steps:
-      - name: step 1 - checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
       
-      - name: step 2 - Clone rgutierressouza/java-project-design-pattern PUBLIC repository
+      - name: Clone rgutierressouza/java-project-design-pattern repository
         uses: actions/checkout@v3
         with:
           repository: rgutierressouza/java-project-design-pattern
