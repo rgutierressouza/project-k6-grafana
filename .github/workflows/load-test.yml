@@ -29,7 +29,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: deploy
           publish_dir: report
-          
+
   automation-build: 
     name: Clone projeto test
     runs-on: ubuntu-latest
@@ -41,3 +41,4 @@ jobs:
           branch: 'develop'
           owner: 'rgutierressouza'
           repository: 'java-project-design-pattern'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
