@@ -34,11 +34,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-      - name: Clone GuillaumeFalourd/poc-github-actions PUBLIC repository
-        uses: rgutierressouza/clone-github-repo-action@main
+      - name: Clone rgutierressouza/java-project-design-pattern PUBLIC repository
+        uses: rgutierressouza/github-repo-action@v3.1
         with:
+          depth: 1
+          branch: 'develop'
           owner: 'rgutierressouza'
-          repository: ''java-project-design-pattern''
+          repository: 'java-project-design-pattern'
       
       - name: Access cloned repository content
         run: |
