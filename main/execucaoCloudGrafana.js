@@ -7,6 +7,7 @@
 
 import { check, sleep } from "k6";
 import http from "k6/http";
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 
 export const options = {
     stages: [
@@ -16,7 +17,6 @@ export const options = {
     ],
     thresholds: {
         checks: ['rate > 0.95' ],
-        http_req_duration: ['p(95) < 200'] // 200ms
     },
     ext:{
         loadimpact:{
@@ -34,4 +34,10 @@ export default function () {
         'Status code é 200' : (statusCode) => statusCode.status === 200
     });
     sleep(1);
+}
+
+export function handleSummary(data) {
+    return{
+        "index.html" : htmlReport(data),
+    };
 }

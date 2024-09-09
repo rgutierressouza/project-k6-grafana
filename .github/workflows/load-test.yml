@@ -1,0 +1,82 @@
+name: K6 Load Test and Java Project Build
+
+on: [push]
+
+permissions:
+  contents: write
+
+jobs:
+  job-k6-build: 
+    name:  K6 Load Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Step 2 - Run K6 load test
+        uses: grafana/k6-action@v0.3.1
+        with: 
+          filename: main/execucaoCloudGrafana.js
+
+      - name: Step 3 - Organize test results
+        run: |
+          ls
+          mkdir -p report
+          mv index.html report || true
+
+      - name: Step 4 - Upload artifact
+        uses: actions/upload-artifact@v4
+        with: 
+          name: relatorio-de-testes-de-performance
+          path: report
+    
+      - name: Step 5 - Publish report
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: deploy
+          publish_dir: report
+
+  job-automation-build: 
+    name: Clone and Build Java Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Gradle
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: '8.0'
+      
+      - name: Clone rgutierressouza/java-project-design-pattern repository
+        uses: actions/checkout@v3
+        with:
+          repository: rgutierressouza/java-project-design-pattern
+          platform: github
+          path: java-project-design-pattern
+
+      - name: Access cloned repository content
+        run: |
+            echo "ROOT"
+            ls
+            echo "CLONED REPO"
+            cd java-project-design-pattern
+            ls
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+        
+      - name: Make Gradle Wrapper Executable
+        run: |
+          cd java-project-design-pattern
+          chmod +x gradlew
+
+      - name: Run JUnit Tests with Gradle
+        run: |
+          cd java-project-design-pattern
+          ls
+          ./gradlew test
