@@ -13,7 +13,8 @@ jobs:
       - name: step 2 - run k6 load test
         uses: grafana/run-k6-action@v1
         with: 
-          path: ./main/execucaoCloudGrafana.js
+          path: | 
+            ./main/execucaoCloudGrafana.js
 
       - run: ls & mkdir report & mv index.html report
 
