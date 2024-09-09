@@ -47,7 +47,7 @@ jobs:
       - name: Clone rgutierressouza/java-project-design-pattern repository
         uses: sudosubin/git-clone-action@v1
         with:
-          repository: 'rgutierressouza/java-project-design-pattern'
-          platform: 'github'
-          ref: 'develop'
-          path: 'java-project-design-pattern'
+          repository: rgutierressouza/java-project-design-pattern
+          platform: github
+          ref: develop
+          path: java-project-design-pattern
