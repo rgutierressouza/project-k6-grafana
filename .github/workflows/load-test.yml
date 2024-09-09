@@ -29,3 +29,14 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: deploy
           publish_dir: report
+        
+  automation-build: 
+      name: Clonar repositório B
+      runs-on: ubuntu-latest   
+
+      steps:
+      - name: step 1 - checkout
+        uses: actions/checkout@v3
+        with:
+          repository: rgutierressouza/java-project-design-pattern
+          path: java-project-design-pattern
