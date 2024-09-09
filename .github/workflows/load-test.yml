@@ -33,14 +33,15 @@ jobs:
   job-automation-build: 
     runs-on: ubuntu-latest
     steps:
+      - name: step 1 - checkout
+        uses: actions/checkout@v3
       
-      - name: Clone rgutierressouza/java-project-design-pattern PUBLIC repository
-        uses: rgutierressouza/github-repo-action@v3.1
+      - name: step 2 - Clone rgutierressouza/java-project-design-pattern PUBLIC repository
+        uses: actions/checkout@v3
         with:
-          depth: 1
-          branch: 'develop'
-          owner: 'rgutierressouza'
-          repository: 'https://github.com/rgutierressouza/java-project-design-pattern.git'
+          repository: rgutierressouza/java-project-design-pattern
+          ref: develop
+          path: java-project-design-pattern
       
       - name: Access cloned repository content
         run: |
