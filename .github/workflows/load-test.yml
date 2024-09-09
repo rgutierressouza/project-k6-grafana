@@ -3,7 +3,7 @@ on: [push]
 permissions:
   contents: write
 jobs:
-  build: 
+  job-k6-build: 
     name: K6 load test
     runs-on: ubuntu-latest
     steps:
@@ -30,12 +30,20 @@ jobs:
           publish_branch: deploy
           publish_dir: report
 
-  automation-build: 
-    name: Clone projeto test
+  job-automation-build: 
     runs-on: ubuntu-latest
     steps:
-      - name: step 1 - Clonar projeto do github
+      
+      - name: Clone GuillaumeFalourd/poc-github-actions PUBLIC repository
         uses: rgutierressouza/clone-github-repo-action@main
         with:
           owner: 'rgutierressouza'
-          repository: 'java-project-design-pattern'
+          repository: ''java-project-design-pattern''
+      
+      - name: Access cloned repository content
+        run: |
+          echo "ROOT"
+          ls -la
+          echo "CLONED REPO"
+          cd poc-github-actions
+          ls -la
