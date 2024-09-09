@@ -43,6 +43,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Set up Gradle
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: '8.0'
       
       - name: Clone rgutierressouza/java-project-design-pattern repository
         uses: actions/checkout@v3
