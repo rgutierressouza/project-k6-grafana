@@ -39,10 +39,3 @@ jobs:
         with:
           owner: 'rgutierressouza'
           repository: 'java-project-design-pattern'
-      - name: Access cloned repository content
-          run: |
-            echo "ROOT"
-            ls -la
-            echo "CLONED REPO"
-            cd poc-github-actions
-            ls -la
