@@ -64,7 +64,12 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-    
+        
+      - name: Make Gradle Wrapper Executable
+        run: |
+          cd java-project-design-pattern
+          chmod +x gradlew
+
       - name: Run JUnit Tests with Gradle
         run: |
           cd java-project-design-pattern
