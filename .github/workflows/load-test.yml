@@ -11,10 +11,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: step 2 - run k6 load test
-      - uses: grafana/setup-k6-action@v1
-      - uses: grafana/run-k6-action@v1
+        uses: grafana/run-k6-action@v1
         with: 
-          filename: main/execucaoCloudGrafana.js
+          filename: ./main/execucaoCloudGrafana.js
 
       - run: ls & mkdir report & mv index.html report
 
